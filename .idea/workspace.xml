@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="" />
+    <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Command.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Command.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandWords.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/CommandWords.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Game.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Room.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Room.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/package.bluej" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +24,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1U5J0Ff79L5XzdDcIPm8vtniFDb" />
   <component name="PropertiesComponent">
@@ -68,10 +81,25 @@
       <updated>1574640297998</updated>
       <workItem from="1574640299116" duration="73000" />
       <workItem from="1574675952508" duration="4006000" />
+      <workItem from="1574694763887" duration="319000" />
+      <workItem from="1574716240578" duration="277000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

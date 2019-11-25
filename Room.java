@@ -20,7 +20,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private ArrayList<Item> items;              // stores the items
+    private ArrayList<Item> itemsInRoom;              // stores the items
 
     /**
      * Create a room described "description". Initially, it has
@@ -32,7 +32,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
-        items = new ArrayList<>();
+        itemsInRoom = new ArrayList<>();
     }
 
     /**
@@ -99,7 +99,7 @@ public class Room
     public void addItems(Item item)
     {
         if (item != null) {
-            items.add(item);
+            itemsInRoom.add(item);
         }
     }
 
@@ -108,7 +108,7 @@ public class Room
      */
     public ArrayList<Item> getItems()
     {
-        return items;
+        return itemsInRoom;
     }
 
     /**
@@ -117,11 +117,11 @@ public class Room
      */
     private String getItemsString()
     {
-        String itemsInRoom = "Item(s): ";
-        for (Item item : items) {
-            itemsInRoom += "\n" + item.getDescription();
+        String roomItems = "Item(s): ";
+        for (Item item : itemsInRoom) {
+            roomItems += "\n" + item.getDescription();
         }
-        return itemsInRoom;
+        return roomItems;
     }
 }
 
