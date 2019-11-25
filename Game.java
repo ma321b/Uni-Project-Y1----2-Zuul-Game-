@@ -60,34 +60,43 @@ public class Game
 
         // initialise room exits and items in the rooms
         greatHall.setExit("south", courtyard);
-        greatHall.addItems(new Item("a bloody spear",
+        greatHall.addItems(new Item("spear",
+                "a bloody spear",
                 20,
                 true));
-        greatHall.addItems(new Item("a huge portrait of Mona Lisa looking angry",
+        greatHall.addItems(new Item("portrait",
+                "a huge portrait of Mona Lisa looking angry",
                 100,
                 false));
-        greatHall.addItems(new Item("a broken piece of some statue",
+        greatHall.addItems(new Item("statue-piece",
+                "a broken piece of some statue",
                 250,
                 false));
-        greatHall.addItems(new Item("a huge round table, turned upside-down",
+        greatHall.addItems(new Item("round-table",
+                "a huge round table, turned upside-down",
                 400,
                 false));
-        greatHall.addItems(new Item("a sharp-edged sword",
+        greatHall.addItems(new Item("sharp-sword",
+                "a sharp-edged sword",
                 15,
                 true));
 
         bedRoom.setExit("east", courtyard);
         bedRoom.setExit("south", bathroom);
-        bedRoom.addItems(new Item("a surprisingly intact queen-sized bed in the corner",
+        bedRoom.addItems(new Item("bed",
+                "a surprisingly intact queen-sized bed in the corner",
                 500,
                 false));
-        bedRoom.addItems(new Item("a broken big mirror",
+        bedRoom.addItems(new Item("big-mirror",
+                "a broken big mirror",
                 100,
                 true));
-        bedRoom.addItems(new Item("a bookshelf containing books of spells",
+        bedRoom.addItems(new Item("bookshelf",
+                "a bookshelf containing books of spells",
                 50,
                 false));
-        bedRoom.addItems(new Item("a piece of broken arrow on the floor",
+        bedRoom.addItems(new Item("broken-arrow",
+                "a piece of broken arrow on the floor",
                 2,
                 true));
 
@@ -95,101 +104,127 @@ public class Game
         courtyard.setExit("east", kitchen);
         courtyard.setExit("south", guardRoom);
         courtyard.setExit("west", bedRoom);
-        courtyard.addItems(new Item("a broken glass vase",
+        courtyard.addItems(new Item("broken-vase",
+                "a broken glass vase",
                 4,
                 true));
-        courtyard.addItems(new Item("a statue of knight on the right hand side",
+        courtyard.addItems(new Item("knight-statue1",
+                "a statue of knight on the right hand side",
                 500,
                 false));
-        courtyard.addItems(new Item("a bigger statue of a knight on the left hand side",
+        courtyard.addItems(new Item("knight-statue2",
+                "a bigger statue of a knight on the left hand side",
                 800,
                 false));
-        courtyard.addItems(new Item("a small wand-like object",
+        courtyard.addItems(new Item("wand",
+                "a small wand-like object",
                 1,
                 true));
 
         kitchen.setExit("east", solarRoom);
         kitchen.setExit("west", courtyard);
-        kitchen.addItems(new Item("a pair of dagger-like knives",
+        kitchen.addItems(new Item("knives",
+                "a pair of dagger-like knives",
                 2,
                 true));
-        kitchen.addItems(new Item("a big stick",
+        kitchen.addItems(new Item("stick",
+                "a big stick",
                 5,
                 true));
-        kitchen.addItems(new Item("a set of broken cutlery levitating in air",
+        kitchen.addItems(new Item("cutlery",
+                "a set of broken cutlery levitating in air",
                 500,
                 false));
-        kitchen.addItems(new Item("a big stone on the floor from which strange " +
+        kitchen.addItems(new Item("stone",
+                "a big stone on the floor from which strange " +
                 "noises can be heard",
                 20,
                 true));
 
         dungeon.setExit("north", longPassage);
-        dungeon.addItems(new Item("a steel bar on floor",
+        dungeon.addItems(new Item("steel-bar",
+                "a steel bar on floor",
                 30,
                 true));
-        dungeon.addItems(new Item("a long sharp spear inside a cell",
+        dungeon.addItems(new Item("dungeon-spear",
+                "a long sharp spear inside a cell",
                 20,
                 true));
-        dungeon.addItems(new Item("a broken wooden door on the floor",
+        dungeon.addItems(new Item("broken-door",
+                "a broken wooden door on the floor",
                 40,
                 false));
-        dungeon.addItems(new Item("a rather big book with light-rays coming out of it",
+        dungeon.addItems(new Item("big-book",
+                "a rather big book with light-rays coming out of it",
                 5,
                 true));
 
         solarRoom.setExit("east", garden);
         solarRoom.setExit("west", kitchen);
-        solarRoom.addItems(new Item("a chair with one leg missing, facing towards you",
+        solarRoom.addItems(new Item("chair-mysterious",
+                "a chair with one leg missing, facing towards you",
                 30,
                 true));
-        solarRoom.addItems(new Item("black curtains covering the window in front",
+        solarRoom.addItems(new Item("curtains",
+                "black curtains covering the window in front",
                 5,
                 true));
-        solarRoom.addItems(new Item("a broken cup, placed upside down on floor",
+        solarRoom.addItems(new Item("broken-cup",
+                "a broken cup, placed upside down on floor",
                 2,
                 true));
-        solarRoom.addItems(new Item("a sharp piece of broken mirror placed on the chair",
+        solarRoom.addItems(new Item("sharp-broken-mirror",
+                "a sharp piece of broken mirror placed on the chair",
                 6,
                 true));
 
         garden.setExit("west", solarRoom);
-        garden.addItems(new Item("an empty kennel in dark shadows",
+        garden.addItems(new Item("kennel",
+                "an empty kennel in dark shadows",
                 100,
                 false));
-        garden.addItems(new Item("a big swing, swinging for no apparent reason since the last 20 years",
+        garden.addItems(new Item("swing",
+                "a big swing, swinging for no apparent reason since the last 20 years",
                 100,
                 false));
-        garden.addItems(new Item("thousands of bats flying here everywhere",
+        garden.addItems(new Item("bats",
+                "thousands of bats flying here everywhere",
                 25,
                 false));
 
         bathroom.setExit("north", bedRoom);
-        bathroom.addItems(new Item("pages of some kind levitating in the air",
+        bathroom.addItems(new Item("pages",
+                "pages of some kind levitating in the air",
                 1,
                 true));
-        bathroom.addItems(new Item("a glowing piece of wood",
+        bathroom.addItems(new Item("glowing-wood",
+                "a glowing piece of wood",
                 2,
                 true));
 
         longPassage.setExit("upstairs", guardRoom);
         longPassage.setExit("south", dungeon);
-        longPassage.addItems(new Item("a medieval era lamp",
+        longPassage.addItems(new Item("medieval-lamp",
+                "a medieval era lamp",
                 2,
                 true));
-        longPassage.addItems(new Item("a portrait on the left with ancient scribblings",
+        longPassage.addItems(new Item("scribbled-portrait",
+                "a portrait on the left with ancient scribblings",
                 20,
                 true));
 
         guardRoom.setExit("downstairs", longPassage);
         guardRoom.setExit("north", courtyard);
-        guardRoom.addItems(new Item("a skeleton on a chair with sword in it's hand",
+        guardRoom.addItems(new Item("skeleton",
+                "a skeleton on a chair with sword in it's hand",
                 30,
                 true));
-        guardRoom.addItems(new Item("a pike on the left wall",
+        guardRoom.addItems(new Item("pike",
+                "a pike on the left wall",
                 12,
                 true));
-        guardRoom.addItems(new Item("a statue of a knight",
+        guardRoom.addItems(new Item("guardRoom-statue",
+                "a statue of a knight",
                 300,
                 false));
 
