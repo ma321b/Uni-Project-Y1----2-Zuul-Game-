@@ -4,11 +4,11 @@ import java.util.HashSet;
  * A class for the player. Used for storing basic info
  */
 
-public class Character
+public class Player
 {
     private HashSet<Item> itemsPicked;     // store the items picked up by the player
 
-    public Character()
+    public Player()
     {
         itemsPicked = new HashSet<>();
     }

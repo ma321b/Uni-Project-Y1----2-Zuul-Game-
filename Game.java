@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -23,15 +25,20 @@ public class Game
         Game g = new Game();
         g.play();
     }
+
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> roomsStack;
+    private Player player;
+    private HashMap<String, Item> itemsMap;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
+        itemsMap = new HashMap<>();
+        player = new Player();
         roomsStack = new Stack<>();
         createRooms();
         parser = new Parser();
@@ -80,6 +87,7 @@ public class Game
                 "a sharp-edged sword",
                 15,
                 true));
+        itemMapInitializer(greatHall);
 
         bedRoom.setExit("east", courtyard);
         bedRoom.setExit("south", bathroom);
@@ -99,6 +107,7 @@ public class Game
                 "a piece of broken arrow on the floor",
                 2,
                 true));
+        itemMapInitializer(bedRoom);
 
         courtyard.setExit("north", greatHall);
         courtyard.setExit("east", kitchen);
@@ -120,6 +129,7 @@ public class Game
                 "a small wand-like object",
                 1,
                 true));
+        itemMapInitializer(courtyard);
 
         kitchen.setExit("east", solarRoom);
         kitchen.setExit("west", courtyard);
@@ -140,6 +150,7 @@ public class Game
                 "noises can be heard",
                 20,
                 true));
+        itemMapInitializer(kitchen);
 
         dungeon.setExit("north", longPassage);
         dungeon.addItems(new Item("steel-bar",
@@ -158,6 +169,7 @@ public class Game
                 "a rather big book with light-rays coming out of it",
                 5,
                 true));
+        itemMapInitializer(dungeon);
 
         solarRoom.setExit("east", garden);
         solarRoom.setExit("west", kitchen);
@@ -177,6 +189,7 @@ public class Game
                 "a sharp piece of broken mirror placed on the chair",
                 6,
                 true));
+        itemMapInitializer(solarRoom);
 
         garden.setExit("west", solarRoom);
         garden.addItems(new Item("kennel",
@@ -191,6 +204,7 @@ public class Game
                 "thousands of bats flying here everywhere",
                 25,
                 false));
+        itemMapInitializer(garden);
 
         bathroom.setExit("north", bedRoom);
         bathroom.addItems(new Item("pages",
@@ -201,6 +215,7 @@ public class Game
                 "a glowing piece of wood",
                 2,
                 true));
+        itemMapInitializer(bathroom);
 
         longPassage.setExit("upstairs", guardRoom);
         longPassage.setExit("south", dungeon);
@@ -212,6 +227,7 @@ public class Game
                 "a portrait on the left with ancient scribblings",
                 20,
                 true));
+        itemMapInitializer(longPassage);
 
         guardRoom.setExit("downstairs", longPassage);
         guardRoom.setExit("north", courtyard);
@@ -227,9 +243,23 @@ public class Game
                 "a statue of a knight",
                 300,
                 false));
+        itemMapInitializer(guardRoom);
 
         currentRoom = courtyard;  // start game outside
         roomsStack.push(currentRoom);
+    }
+
+    /**
+     * Stores the items in HashMap and maps the names of the items to
+     * the items themselves
+     * @param room The room, items of which are to be added in the itemsMap
+     */
+    private void itemMapInitializer(Room room)
+    {
+        ArrayList<Item> itemsInRoom = room.getItems();
+        for (Item item : itemsInRoom) {
+            itemsMap.put(item.getName(), item);
+        }
     }
 
     /**

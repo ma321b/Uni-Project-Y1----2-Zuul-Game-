@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Command.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Command.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandWords.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/CommandWords.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Game.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Room.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Room.ctxt" afterDir="false" />
+    <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="Implemented the &quot;back&quot; command to go to the previous room">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/package.bluej" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Room.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +39,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -81,7 +80,17 @@
       <workItem from="1574640299116" duration="73000" />
       <workItem from="1574675952508" duration="4006000" />
       <workItem from="1574694763887" duration="319000" />
+      <workItem from="1574716240578" duration="6113000" />
+      <workItem from="1574777690916" duration="560000" />
     </task>
+    <task id="LOCAL-00001" summary="Implemented the &quot;back&quot; command to go to the previous room">
+      <created>1574716569733</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574716569733</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,10 +101,16 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemented the &quot;back&quot; command to go to the previous room" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the &quot;back&quot; command to go to the previous room" />
   </component>
 </project>

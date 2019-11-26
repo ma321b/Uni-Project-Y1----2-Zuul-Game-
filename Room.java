@@ -120,7 +120,7 @@ public class Room
     {
         String roomItems = "Item(s): ";
         for (Item item : itemsInRoom) {
-            roomItems += "\n" + item.getDescription();
+            roomItems += "\n" + item.getDescription() + "[" + item.getName() + "]";
         }
         return roomItems;
     }
