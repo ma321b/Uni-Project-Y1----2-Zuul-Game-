@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="Implemented the &quot;back&quot; command to go to the previous room">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Room.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +76,7 @@
       <workItem from="1574675952508" duration="4006000" />
       <workItem from="1574694763887" duration="319000" />
       <workItem from="1574716240578" duration="6113000" />
-      <workItem from="1574777690916" duration="2923000" />
+      <workItem from="1574777690916" duration="3154000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented the &quot;back&quot; command to go to the previous room">
       <created>1574716569733</created>

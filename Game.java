@@ -87,7 +87,7 @@ public class Game
                 "a sharp-edged sword",
                 15,
                 true));
-        itemMapInitializer(greatHall);
+        itemsMapInitializer(greatHall);
 
         bedRoom.setExit("east", courtyard);
         bedRoom.setExit("south", bathroom);
@@ -107,7 +107,7 @@ public class Game
                 "a piece of broken arrow on the floor",
                 2,
                 true));
-        itemMapInitializer(bedRoom);
+        itemsMapInitializer(bedRoom);
 
         courtyard.setExit("north", greatHall);
         courtyard.setExit("east", kitchen);
@@ -129,7 +129,7 @@ public class Game
                 "a small wand-like object",
                 1,
                 true));
-        itemMapInitializer(courtyard);
+        itemsMapInitializer(courtyard);
 
         kitchen.setExit("east", solarRoom);
         kitchen.setExit("west", courtyard);
@@ -150,7 +150,7 @@ public class Game
                 "noises can be heard",
                 20,
                 true));
-        itemMapInitializer(kitchen);
+        itemsMapInitializer(kitchen);
 
         dungeon.setExit("north", longPassage);
         dungeon.addItems(new Item("steel-bar",
@@ -169,7 +169,7 @@ public class Game
                 "a rather big book with light-rays coming out of it",
                 5,
                 true));
-        itemMapInitializer(dungeon);
+        itemsMapInitializer(dungeon);
 
         solarRoom.setExit("east", garden);
         solarRoom.setExit("west", kitchen);
@@ -189,7 +189,7 @@ public class Game
                 "a sharp piece of broken mirror placed on the chair",
                 6,
                 true));
-        itemMapInitializer(solarRoom);
+        itemsMapInitializer(solarRoom);
 
         garden.setExit("west", solarRoom);
         garden.addItems(new Item("kennel",
@@ -204,7 +204,7 @@ public class Game
                 "thousands of bats flying here everywhere",
                 25,
                 false));
-        itemMapInitializer(garden);
+        itemsMapInitializer(garden);
 
         bathroom.setExit("north", bedRoom);
         bathroom.addItems(new Item("pages",
@@ -215,7 +215,7 @@ public class Game
                 "a glowing piece of wood",
                 2,
                 true));
-        itemMapInitializer(bathroom);
+        itemsMapInitializer(bathroom);
 
         longPassage.setExit("upstairs", guardRoom);
         longPassage.setExit("south", dungeon);
@@ -227,7 +227,7 @@ public class Game
                 "a portrait on the left with ancient scribblings",
                 20,
                 true));
-        itemMapInitializer(longPassage);
+        itemsMapInitializer(longPassage);
 
         guardRoom.setExit("downstairs", longPassage);
         guardRoom.setExit("north", courtyard);
@@ -243,7 +243,7 @@ public class Game
                 "a statue of a knight",
                 300,
                 false));
-        itemMapInitializer(guardRoom);
+        itemsMapInitializer(guardRoom);
 
         currentRoom = courtyard;  // start game outside
         roomsStack.push(currentRoom);
@@ -254,7 +254,7 @@ public class Game
      * the items themselves
      * @param room The room, items of which are to be added in the itemsMap
      */
-    private void itemMapInitializer(Room room)
+    private void itemsMapInitializer(Room room)
     {
         ArrayList<Item> itemsInRoom = room.getItems();
         for (Item item : itemsInRoom) {
