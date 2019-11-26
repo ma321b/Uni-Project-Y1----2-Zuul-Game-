@@ -320,6 +320,9 @@ public class Game
         else if (commandWord.equals("back")) {
             goBack();
         }
+        else if (commandWord.equals("pick")) {
+            pickItem(command);
+        }
         // else command not recognised.
         return wantToQuit;
     }
@@ -391,5 +394,44 @@ public class Game
         roomsStack.pop();   // remove the top most Room from the stack, i.e., the one in which player is currently
         currentRoom = roomsStack.peek();
         System.out.println(currentRoom.getLongDescription());
+    }
+
+    /**
+     * Pick up the items for the player and store them in his inventory
+     * @param command The command to specify which item in room to pick
+     */
+    private void pickItem(Command command)
+    {
+        String itemName = command.getSecondWord();
+        if (!command.hasSecondWord()) {
+            // if the player only enters "pick" as the command
+            System.out.println("Pick what, mate?");
+            return;
+        }
+        else if (player.getItemsPicked().contains(itemsMap.get(itemName))) {
+            // if the player already has this item in inventory
+            System.out.println("You have already picked up this item");
+            return;
+        }
+        else {
+            if (currentRoom.isItemInRoom(itemName)) {
+                // if the item is in the current room
+                if (player.getTotalWeight() <= 50) {
+                    // if the total weight carried by the player does not exceed
+                    // a maximum of 50 (kg)
+                    player.pickUpItem(itemsMap.get(itemName));
+                    System.out.println("Picked up " + itemName);
+                    return;
+                }
+                else {
+                    System.out.println("You already have too much ");
+                    return;
+                }
+            }
+            else {
+                // if the item is not in the current room
+                System.out.println("There is no such item in the room, bro!");
+            }
+        }
     }
 }

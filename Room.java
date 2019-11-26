@@ -124,5 +124,20 @@ public class Room
         }
         return roomItems;
     }
+
+    /**
+     * @param name Name of the item
+     * @return True if item is present in room, otherwise false
+     */
+    public boolean isItemInRoom(String name)
+    {
+        for (Item item : itemsInRoom) {
+            if (item.getName().equals(name)) {
+                return false;
+            }
+        }
+        // if we reach here then item is indeed present in the room
+        return true;
+    }
 }
 
