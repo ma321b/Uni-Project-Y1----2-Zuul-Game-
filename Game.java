@@ -421,6 +421,7 @@ public class Game
                     // a maximum of 50 (kg)
                     player.pickUpItem(itemsMap.get(itemName));
                     System.out.println("Picked up " + itemName);
+                    getInventory();
                     return;
                 }
                 else {
@@ -433,5 +434,17 @@ public class Game
                 System.out.println("There is no such item in the room, bro!");
             }
         }
+    }
+
+    /**
+     * @return A string containing all the items in the player's inventory
+     */
+    private String getInventory()
+    {
+        String inventory = "Item(s) in inventory: " + "\n";
+        for (Item item : player.getItemsPicked()) {
+            inventory += item.getName() + "\n";
+        }
+        return inventory;
     }
 }

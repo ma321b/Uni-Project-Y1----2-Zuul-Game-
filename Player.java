@@ -22,13 +22,6 @@ public class Player
         if (item.isCanPickUp()) {
             itemsPicked.add(item);
         }
-          /*  else {
-                System.out.println("You can't carry any more weight, bro.");
-            }
-        }
-        else {
-            System.out.println("Do you really think you can pick it up, mate? NO!");
-        }*/
     }
 
     /**

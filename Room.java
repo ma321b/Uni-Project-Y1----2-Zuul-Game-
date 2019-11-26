@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.HashMap;
 
@@ -131,13 +132,13 @@ public class Room
      */
     public boolean isItemInRoom(String name)
     {
+        HashSet<String> itemsNameSet = new HashSet<>();
+        // add all items' names from the array to this set
         for (Item item : itemsInRoom) {
-            if (item.getName().equals(name)) {
-                return false;
-            }
+            itemsNameSet.add(item.getName());
         }
-        // if we reach here then item is indeed present in the room
-        return true;
+
+        return itemsNameSet.contains(name);   //return if the set contains an item with the same name as the parameter
     }
 }
 
