@@ -327,6 +327,7 @@ public class Game
         }
         else if (commandWord.equals("exorcise")) {
             exorcise();
+            wantToQuit = true;
         }
         // else command not recognised.
         return wantToQuit;
@@ -528,12 +529,11 @@ public class Game
         System.out.println("So you've chosen to do this.");
         System.out.println("Are you sure you want to do this? Type yes if so,");
         System.out.println("or type no if you'd like to back out while you can.");
-
+        System.out.println();
         System.out.println("> ");
 
         // reading the user input:
-        Scanner scanner = new Scanner(System.in);
-        String userResponse = scanner.nextLine();
+        String userResponse = parser.readInput();
 
         if (userResponse.equals("yes")) {
             if (correctItemsPicked && correctRoom) {
@@ -549,23 +549,29 @@ public class Game
                 // correct items:
                 System.out.println("GAME OVER!");
                 System.out.println();
-                System.out.println("You could've done better! You weren't in the correct " +
-                        "room to perform exorcism and neither were you carrying the " +
-                        "items required for the exorcism to be successful.");
+                System.out.println("You could've done better! You weren't in the correct ");
+                System.out.println("room to perform exorcism and neither were you carrying the ");
+                System.out.println("items required for the exorcism to be successful.");
             }
             else if (!correctItemsPicked) {
                 // The user does not have correct items to perform a successful exorcism
                 System.out.println("GAME OVER!");
                 System.out.println();
-                System.out.println("The ghosts in castle have killed you since you did " +
-                        "not have correct items for exorcism");
+                System.out.println("The ghosts in castle have killed you since you did ");
+                System.out.println("not have correct items for exorcism");
             }
             else if (!correctRoom) {
                 System.out.println("GAME OVER!");
                 System.out.println();
-                System.out.println("You have been toasted by the demons here. You " +
-                        "shouldn't have attempted exorcism in the wrong room.");
+                System.out.println("You have been toasted by the demons here. You ");
+                System.out.println("shouldn't have attempted exorcism in the wrong room.");
             }
+        }
+        else {
+            System.out.println("A wise decision indeed. Better safe than sorry");
+            System.out.println();
+            System.out.println(currentRoom.getLongDescription());
+            System.out.println(getInventory());
         }
     }
 

@@ -70,4 +70,13 @@ public class Parser
     {
         commands.showAll();
     }
+
+    /**
+     * Reads user input
+     * @return Return user input as String
+     */
+    public String readInput()
+    {
+        return reader.nextLine();
+    }
 }
