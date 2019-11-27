@@ -569,18 +569,4 @@ public class Game
             System.out.println("shouldn't have attempted exorcism in the wrong room.");
         }
     }
-
-    /**
-     * Print the string provided by giving delays
-     * @param toShow The String to print
-     * @param tUnit The TimeUnit object
-     * @param interval The interval (gap) between printing String
-     */
-    private void printWithDelay(String toShow, TimeUnit tUnit, long interval)
-            throws InterruptedException {
-        for (char character : toShow.toCharArray()) {
-            System.out.print(character);
-            tUnit.sleep(interval);
-        }
-    }
 }
