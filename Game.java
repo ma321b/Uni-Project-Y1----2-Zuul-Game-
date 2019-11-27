@@ -290,7 +290,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getLongDescription() + "\n" + getInventory());
     }
 
     /**
@@ -340,7 +340,7 @@ public class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around in some old castle amidst ghosts");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -369,7 +369,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             roomsStack.push(currentRoom);
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getLongDescription() + "\n" + getInventory());
         }
     }
 
@@ -428,9 +428,11 @@ public class Game
                     // pick up combined, and the item is declared it is able to
                     // be picked up
                     player.pickUpItem(item);
+                    currentRoom.getItems().remove(item);   // remove the item from current room since it has been picked up
                     System.out.println("Picked up " + itemName);
                     System.out.println(getInventory());
                     System.out.println(currentRoom.getLongDescription());
+
                     return;
                 }
                 else if (!item.isCanPickUp()) {
@@ -469,19 +471,23 @@ public class Game
     private void dropItem(Command command)
     {
         String itemName = command.getSecondWord();
+        Item item = itemsMap.get(itemName);
+
         if (!command.hasSecondWord()) {
             // if the player only enters "drop" as the command (i.e., without a second word)
             System.out.println("Drop what?");
             return;
         }
-        else if (!player.getItemsPicked().contains(itemsMap.get(itemName))) {
+        else if (!player.getItemsPicked().contains(item)) {
             // if no such item exists in the player's inventory
             System.out.println("There is no such item in the inventory, bro.");
             return;
         }
         else {
-            player.dropItem(itemsMap.get(itemName));
+            player.dropItem(item);
+            currentRoom.getItems().add(item);   // add the item in the current room (since we are dropping it)
             System.out.println(getInventory());
+            System.out.println(currentRoom.getLongDescription());
         }
     }
 }
