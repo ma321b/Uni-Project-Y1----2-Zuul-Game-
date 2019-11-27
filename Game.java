@@ -323,6 +323,9 @@ public class Game
         else if (commandWord.equals("pick")) {
             pickItem(command);
         }
+        else if (commandWord.equals("drop")) {
+            dropItem(command);
+        }
         // else command not recognised.
         return wantToQuit;
     }
@@ -403,12 +406,15 @@ public class Game
     private void pickItem(Command command)
     {
         String itemName = command.getSecondWord();
+        // The item itself with it's name given in command:
+        Item item = itemsMap.get(itemName);
+
         if (!command.hasSecondWord()) {
-            // if the player only enters "pick" as the command
+            // if the player only enters "pick" as the command (without a second word)
             System.out.println("Pick what, mate?");
             return;
         }
-        else if (player.getItemsPicked().contains(itemsMap.get(itemName))) {
+        else if (player.getItemsPicked().contains(item)) {
             // if the player already has this item in inventory
             System.out.println("You have already picked up this item");
             return;
@@ -416,17 +422,25 @@ public class Game
         else {
             if (currentRoom.isItemInRoom(itemName)) {
                 // if the item is in the current room
-                if (player.getTotalWeight() <= 50) {
+                if (player.getTotalWeight(item.getWeight()) <= 50 && item.isCanPickUp()) {
                     // if the total weight carried by the player does not exceed
-                    // a maximum of 50 (kg)
-                    player.pickUpItem(itemsMap.get(itemName));
+                    // a maximum of 50 (kg) WITH the weight of the object which we are trying to
+                    // pick up combined, and the item is declared it is able to
+                    // be picked up
+                    player.pickUpItem(item);
                     System.out.println("Picked up " + itemName);
-                    getInventory();
+                    System.out.println(getInventory());
+                    System.out.println(currentRoom.getLongDescription());
                     return;
                 }
-                else {
-                    System.out.println("You already have too much ");
+                else if (!item.isCanPickUp()) {
+                    // if the canPickUp field of item is false. i.e.,
+                    // the item can not be picked up
+                    System.out.println("This item can not be picked up");
                     return;
+                }
+                else if (player.getTotalWeight(item.getWeight()) > 50) {
+                    System.out.println("Too heavy to pick up!");
                 }
             }
             else {
@@ -446,5 +460,28 @@ public class Game
             inventory += item.getName() + "\n";
         }
         return inventory;
+    }
+
+    /**
+     * Drop an item from the player's inventory
+     * @param command
+     */
+    private void dropItem(Command command)
+    {
+        String itemName = command.getSecondWord();
+        if (!command.hasSecondWord()) {
+            // if the player only enters "drop" as the command (i.e., without a second word)
+            System.out.println("Drop what?");
+            return;
+        }
+        else if (!player.getItemsPicked().contains(itemsMap.get(itemName))) {
+            // if no such item exists in the player's inventory
+            System.out.println("There is no such item in the inventory, bro.");
+            return;
+        }
+        else {
+            player.dropItem(itemsMap.get(itemName));
+            System.out.println(getInventory());
+        }
     }
 }

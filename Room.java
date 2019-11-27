@@ -22,7 +22,6 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> itemsInRoom;              // stores the items
-    private HashMap<String, Item> itemsMapped;   // maps each item in the room with a unique integer
 
     /**
      * Create a room described "description". Initially, it has
