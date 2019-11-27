@@ -308,7 +308,7 @@ public class Game
      * @param command The command to be processed.
      * @return true If the command ends the game, false otherwise.
      */
-    private boolean processCommand(Command command) 
+    private boolean processCommand(Command command)
     {
         boolean wantToQuit = false;
 
@@ -429,6 +429,7 @@ public class Game
         roomsStack.pop();   // remove the top most Room from the stack, i.e., the one in which player is currently
         currentRoom = roomsStack.peek();
         System.out.println(currentRoom.getLongDescription());
+        System.out.println(getInventory());
     }
 
     /**
