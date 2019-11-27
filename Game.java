@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -20,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  *          Bed Room  --------- Courtyard ----------- Kitchen ------ Solar Room  ----- Garden
  *             |                     |
  *          Bathroom             Guard Room
- *                                  \
+ *                                   \
  *                              Long Passage
  *                                   |
  *                                Dungeon
@@ -37,6 +36,7 @@ public class Game
     }
 
     private Parser parser;
+    private ArrayList<Room> allGameRooms;
     private Room currentRoom;
     private Stack<Room> roomsStack;
     private Player player;
@@ -47,6 +47,7 @@ public class Game
      */
     public Game() 
     {
+        allGameRooms = new ArrayList<>();
         itemsMap = new HashMap<>();
         player = new Player();
         roomsStack = new Stack<>();
@@ -62,7 +63,7 @@ public class Game
         Room greatHall, bedRoom, courtyard, kitchen, dungeon, solarRoom,
                 bathroom, garden, longPassage, guardRoom;
 
-        // create the rooms
+        // create the rooms and store them in the allGameRooms ArrayList
         greatHall = new Room("in the great hall, surrounded by weapons");
         bedRoom = new Room("in a strange bedroom, having no bed");
         courtyard = new Room("in a spooky-looking courtyard");
@@ -74,6 +75,12 @@ public class Game
         bathroom = new Room("a medieval style bathroom");
         longPassage = new Room("a seemingly never-ending passage");
         guardRoom = new Room("in a guardroom with armoured guard statues");
+
+        Room[] roomsArray = new Room[] {
+                greatHall, bedRoom, courtyard, kitchen, dungeon,
+                solarRoom, garden, bathroom, longPassage, guardRoom
+        };
+        allGameRooms.addAll(Arrays.asList(roomsArray));
 
         // initialise room exits and items in the rooms
         greatHall.setExit("south", courtyard);
@@ -551,8 +558,9 @@ public class Game
             // correct items:
             System.out.println("GAME OVER!");
             System.out.println();
-            System.out.println("You could've done better! You weren't in the correct ");
-            System.out.println("room to perform exorcism and neither were you carrying the ");
+            System.out.println("You could've done better!");
+            System.out.println("You weren't in the correct room to perform ");
+            System.out.println("exorcism and neither were you carrying the ");
             System.out.println("items required for the exorcism to be successful.");
         }
         else if (!correctItemsPicked) {

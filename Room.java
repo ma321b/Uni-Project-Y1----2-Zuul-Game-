@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 public class Room 
 {
+    private HashSet<Characters> charactersInRoom;    // characters in current room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> itemsInRoom;              // stores the items
@@ -31,6 +32,7 @@ public class Room
      */
     public Room(String description) 
     {
+        charactersInRoom = new HashSet<>();
         this.description = description;
         exits = new HashMap<>();
         itemsInRoom = new ArrayList<>();
@@ -64,7 +66,7 @@ public class Room
     public String getLongDescription()
     {
         return "You are " + description + ".\n" + getExitString()
-                + "\n" + getItemsString();
+                + "\n" + getItemsString() + getCharactersInRoomString();
     }
 
     /**
@@ -138,6 +140,26 @@ public class Room
         }
 
         return itemsNameSet.contains(name);   //return if the set contains an item with the same name as the parameter
+    }
+
+    /**
+     * @return The String containing all items currently in the room
+     */
+    private String getCharactersInRoomString()
+    {
+        String charactersString = "Characters:";
+        for (Characters character : charactersInRoom) {
+            charactersString += " " + character.getName();
+        }
+        return charactersString;
+    }
+
+    /**
+     * @return The HashSet containing all the characters in the Room
+     */
+    public HashSet<Characters> getCharactersInRoom()
+    {
+        return charactersInRoom;
     }
 }
 
