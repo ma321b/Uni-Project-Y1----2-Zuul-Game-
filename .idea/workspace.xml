@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="Implemented the &quot;back&quot; command to go to the previous room">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommandWords.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/CommandWords.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/CommandWords.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Player.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +82,8 @@
       <workItem from="1574694763887" duration="319000" />
       <workItem from="1574716240578" duration="6113000" />
       <workItem from="1574777690916" duration="18719000" />
-      <workItem from="1574853000302" duration="1647000" />
+      <workItem from="1574853000302" duration="6188000" />
+      <workItem from="1574860029001" duration="497000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented the &quot;back&quot; command to go to the previous room">
       <created>1574716569733</created>

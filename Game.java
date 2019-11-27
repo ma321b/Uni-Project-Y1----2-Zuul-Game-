@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -15,7 +14,7 @@ import java.util.Stack;
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
+ * @author  Michael Kölling and David J. Barnes + Muhammad Athar Abdullah
  * @version 2016.02.29
  */
 
@@ -326,6 +325,9 @@ public class Game
         else if (commandWord.equals("drop")) {
             dropItem(command);
         }
+        else if (commandWord.equals("exorcise")) {
+            exorcise();
+        }
         // else command not recognised.
         return wantToQuit;
     }
@@ -340,24 +342,28 @@ public class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around in some old castle amidst ghosts. " +
-                "But this it the life you have chosen. Ridding people of " +
-                "evil spirits is no easy task, but Good Luck hero! It's not " +
-                "impossible either!");
+        System.out.println("around in some old castle amidst ghosts. ");
+        System.out.println("This is the life you have chosen. It's no easy task");
+        System.out.println("ridding places of evil spirits. But Good Luck hero! - ");
+        System.out.println("it's not impossible either");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
-        System.out.println("The \"back\" command takes you back to the previous room, " +
-                "ending up in the room you started with.");
-        System.out.println("The \"pick\" command lets you pick up items. To pick up " +
-                "a specific item, type \"pick <item name>\" without the <>. Item names " +
-                "are printed after their description, in square brackets.");
-        System.out.println("The \"drop\" command lets your drop an item from your " +
-                "inventory. It is of the same form as the pick command i.e., " +
-                "\"drop <item name>.");
-        System.out.println("The \"exorcise\" command lets you perform exorcism in the " +
-                "current room. Be sure to use it wisely though - it is a matter of " +
-                "life and death for you");
+        System.out.println();
+        System.out.println("The \"back\" command takes you back to the previous room, ");
+        System.out.println("ending up in the room you started with.");
+        System.out.println();
+        System.out.println("The \"pick\" command lets you pick up items. To pick up ");
+        System.out.println("a specific item, type \"pick <item name>\" without the <>. Item names");
+        System.out.println("are printed after their description, in square brackets.");
+        System.out.println();
+        System.out.println("The \"drop\" command lets your drop an item from your ");
+        System.out.println("inventory. It is of the same form as the pick command i.e., ");
+        System.out.println("\"drop <item name>.\"");
+        System.out.println();
+        System.out.println("The \"exorcise\" command lets you perform exorcism in the ");
+        System.out.println("current room. Be sure to use it wisely though - it is a matter of ");
+        System.out.println("life and death for you");
     }
 
     /** 
@@ -502,6 +508,78 @@ public class Game
             currentRoom.getItems().add(item);   // add the item in the current room (since we are dropping it)
             System.out.println(getInventory());
             System.out.println(currentRoom.getLongDescription());
+        }
+    }
+
+    private void exorcise()
+    {
+        Item itemWand = itemsMap.get("wand");
+        Item itemStone = itemsMap.get("stone");
+        Item itemBook = itemsMap.get("big-book");
+
+        // check if the user has picked up the required items to successfully
+        // perform exorcism:
+        boolean correctItemsPicked = player.getItemsPicked().contains(itemBook) &&
+                player.getItemsPicked().contains(itemStone) &&
+                player.getItemsPicked().contains(itemWand);
+        // check if the user is in the correct room to perform exorcism, i.e., dungeon:
+        boolean correctRoom = currentRoom.getShortDescription().equals("in a dark, scary dungeon");
+
+        System.out.println("So you've chosen to do this.");
+        System.out.println("Are you sure you want to do this? Type yes if so,");
+        System.out.println("or type no if you'd like to back out while you can.");
+
+        System.out.println("> ");
+
+        // reading the user input:
+        Scanner scanner = new Scanner(System.in);
+        String userResponse = scanner.nextLine();
+
+        if (userResponse.equals("yes")) {
+            if (correctItemsPicked && correctRoom) {
+                // If we're currently in dungeon and our player is carrying correct items
+                System.out.println("GAME WON!");
+                System.out.println();
+                System.out.println("CONGRATULATIONS! You have successfully performed exorcism!");
+                System.out.println("The castle can finally be restored now!");
+                System.out.println("The castle owners await you at dinner <3");
+            }
+            else if (!(correctItemsPicked || correctRoom)) {
+                // if both the player is in the wrong room and he isn't carrying
+                // correct items:
+                System.out.println("GAME OVER!");
+                System.out.println();
+                System.out.println("You could've done better! You weren't in the correct " +
+                        "room to perform exorcism and neither were you carrying the " +
+                        "items required for the exorcism to be successful.");
+            }
+            else if (!correctItemsPicked) {
+                // The user does not have correct items to perform a successful exorcism
+                System.out.println("GAME OVER!");
+                System.out.println();
+                System.out.println("The ghosts in castle have killed you since you did " +
+                        "not have correct items for exorcism");
+            }
+            else if (!correctRoom) {
+                System.out.println("GAME OVER!");
+                System.out.println();
+                System.out.println("You have been toasted by the demons here. You " +
+                        "shouldn't have attempted exorcism in the wrong room.");
+            }
+        }
+    }
+
+    /**
+     * Print the string provided by giving delays
+     * @param toShow The String to print
+     * @param tUnit The TimeUnit object
+     * @param interval The interval (gap) between printing String
+     */
+    private void printWithDelay(String toShow, TimeUnit tUnit, long interval)
+            throws InterruptedException {
+        for (char character : toShow.toCharArray()) {
+            System.out.print(character);
+            tUnit.sleep(interval);
         }
     }
 }
