@@ -13,7 +13,18 @@ import java.util.concurrent.TimeUnit;
  *  This main class creates and initialises all the others: it creates all
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
- * 
+ *
+ *  MAP:
+ *                              Great Hall
+ *                                   |
+ *          Bed Room  --------- Courtyard ----------- Kitchen ------ Solar Room  ----- Garden
+ *             |                     |
+ *          Bathroom             Guard Room
+ *                                  \
+ *                              Long Passage
+ *                                   |
+ *                                Dungeon
+ *
  * @author  Michael Kölling and David J. Barnes + Muhammad Athar Abdullah
  * @version 2016.02.29
  */
@@ -526,52 +537,35 @@ public class Game
         // check if the user is in the correct room to perform exorcism, i.e., dungeon:
         boolean correctRoom = currentRoom.getShortDescription().equals("in a dark, scary dungeon");
 
-        System.out.println("So you've chosen to do this.");
-        System.out.println("Are you sure you want to do this? Type yes if so,");
-        System.out.println("or type no if you'd like to back out while you can.");
-        System.out.println();
-        System.out.println("> ");
-
-        // reading the user input:
-        String userResponse = parser.readInput();
-
-        if (userResponse.equals("yes")) {
-            if (correctItemsPicked && correctRoom) {
-                // If we're currently in dungeon and our player is carrying correct items
-                System.out.println("GAME WON!");
-                System.out.println();
-                System.out.println("CONGRATULATIONS! You have successfully performed exorcism!");
-                System.out.println("The castle can finally be restored now!");
-                System.out.println("The castle owners await you at dinner <3");
-            }
-            else if (!(correctItemsPicked || correctRoom)) {
-                // if both the player is in the wrong room and he isn't carrying
-                // correct items:
-                System.out.println("GAME OVER!");
-                System.out.println();
-                System.out.println("You could've done better! You weren't in the correct ");
-                System.out.println("room to perform exorcism and neither were you carrying the ");
-                System.out.println("items required for the exorcism to be successful.");
-            }
-            else if (!correctItemsPicked) {
-                // The user does not have correct items to perform a successful exorcism
-                System.out.println("GAME OVER!");
-                System.out.println();
-                System.out.println("The ghosts in castle have killed you since you did ");
-                System.out.println("not have correct items for exorcism");
-            }
-            else if (!correctRoom) {
-                System.out.println("GAME OVER!");
-                System.out.println();
-                System.out.println("You have been toasted by the demons here. You ");
-                System.out.println("shouldn't have attempted exorcism in the wrong room.");
-            }
-        }
-        else {
-            System.out.println("A wise decision indeed. Better safe than sorry");
+        if (correctItemsPicked && correctRoom) {
+            // If we're currently in dungeon and our player is carrying correct items
+            System.out.println("GAME WON!");
             System.out.println();
-            System.out.println(currentRoom.getLongDescription());
-            System.out.println(getInventory());
+            System.out.println("CONGRATULATIONS! You have successfully performed exorcism!");
+            System.out.println("The castle can finally be restored now!");
+            System.out.println("The castle owners await you at dinner <3");
+        }
+        else if (!(correctItemsPicked || correctRoom)) {
+            // if both the player is in the wrong room and he isn't carrying
+            // correct items:
+            System.out.println("GAME OVER!");
+            System.out.println();
+            System.out.println("You could've done better! You weren't in the correct ");
+            System.out.println("room to perform exorcism and neither were you carrying the ");
+            System.out.println("items required for the exorcism to be successful.");
+        }
+        else if (!correctItemsPicked) {
+            // The user does not have correct items to perform a successful exorcism
+            System.out.println("GAME OVER!");
+            System.out.println();
+            System.out.println("The ghosts in castle have killed you since you did ");
+            System.out.println("not have correct items for exorcism");
+        }
+        else if (!correctRoom) {
+            System.out.println("GAME OVER!");
+            System.out.println();
+            System.out.println("You have been toasted by the demons here. You ");
+            System.out.println("shouldn't have attempted exorcism in the wrong room.");
         }
     }
 
