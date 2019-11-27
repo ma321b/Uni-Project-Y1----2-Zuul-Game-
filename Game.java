@@ -334,16 +334,30 @@ public class Game
 
     /**
      * Print out some help information.
-     * Here we print some stupid, cryptic message and a list of the 
-     * command words.
+     * Here we print a list of the command words and how to
+     * use them.
      */
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around in some old castle amidst ghosts");
+        System.out.println("around in some old castle amidst ghosts. " +
+                "But this it the life you have chosen. Ridding people of " +
+                "evil spirits is no easy task, but Good Luck hero! It's not " +
+                "impossible either!");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println("The \"back\" command takes you back to the previous room, " +
+                "ending up in the room you started with.");
+        System.out.println("The \"pick\" command lets you pick up items. To pick up " +
+                "a specific item, type \"pick <item name>\" without the <>. Item names " +
+                "are printed after their description, in square brackets.");
+        System.out.println("The \"drop\" command lets your drop an item from your " +
+                "inventory. It is of the same form as the pick command i.e., " +
+                "\"drop <item name>.");
+        System.out.println("The \"exorcise\" command lets you perform exorcism in the " +
+                "current room. Be sure to use it wisely though - it is a matter of " +
+                "life and death for you");
     }
 
     /** 

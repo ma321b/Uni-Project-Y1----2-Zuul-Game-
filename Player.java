@@ -1,7 +1,8 @@
 import java.util.HashSet;
 
 /**
- * A class for the player. Used for storing basic info
+ * A class for the player. Used for storing basic information about the player
+ * himself and his inventory
  */
 
 public class Player
