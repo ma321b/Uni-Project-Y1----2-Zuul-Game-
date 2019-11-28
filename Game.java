@@ -38,6 +38,7 @@ public class Game
     private Random random;
     private Parser parser;
     private ArrayList<Room> allGameRooms;     // stores all the Rooms in the game
+    private HashSet<Characters> allGameCharacters;  // stores all the Characters in game
     private Room currentRoom;
     private Stack<Room> roomsStack;
     private Player player;
@@ -48,6 +49,7 @@ public class Game
      */
     public Game() 
     {
+        allGameCharacters = new HashSet<>();
         random = new Random();
         allGameRooms = new ArrayList<>();
         itemsMap = new HashMap<>();
@@ -110,6 +112,7 @@ public class Game
                 true));
         greatHall.addCharacter(new Characters("The Ghost of King Edward"));
         greatHall.addCharacter(new Characters("The demon of Caesar"));
+        allGameCharactersInitializer(greatHall.getCharactersInRoom());
         itemsMapInitializer(greatHall);
 
         bedRoom.setExit("east", courtyard);
@@ -132,6 +135,7 @@ public class Game
                 true));
         bedRoom.addCharacter(new Characters("A cat of impossibly-black color"));
         bedRoom.addCharacter(new Characters("The Demon of Paul"));
+        allGameCharactersInitializer(bedRoom.getCharactersInRoom());
         itemsMapInitializer(bedRoom);
 
         courtyard.setExit("north", greatHall);
@@ -156,6 +160,7 @@ public class Game
                 true));
         courtyard.addCharacter(new Characters("a scary witch"));
         courtyard.addCharacter(new Characters("a levitating old woman"));
+        allGameCharactersInitializer(courtyard.getCharactersInRoom());
         itemsMapInitializer(courtyard);
 
         kitchen.setExit("east", solarRoom);
@@ -179,6 +184,7 @@ public class Game
                 true));
         kitchen.addCharacter(new Characters("a moving statue"));
         kitchen.addCharacter(new Characters("a moving skeleton"));
+        allGameCharactersInitializer(kitchen.getCharactersInRoom());
         itemsMapInitializer(kitchen);
 
         dungeon.setExit("north", longPassage);
@@ -200,6 +206,7 @@ public class Game
                 true));
         dungeon.addCharacter(new Characters("a moving doll"));
         dungeon.addCharacter(new Characters("The Ghost of Leonard"));
+        allGameCharactersInitializer(dungeon.getCharactersInRoom());
         itemsMapInitializer(dungeon);
 
         solarRoom.setExit("east", garden);
@@ -222,6 +229,7 @@ public class Game
                 true));
         solarRoom.addCharacter(new Characters("a strangely big dog"));
         solarRoom.addCharacter(new Characters("a hobbit"));
+        allGameCharactersInitializer(solarRoom.getCharactersInRoom());
         itemsMapInitializer(solarRoom);
 
         garden.setExit("west", solarRoom);
@@ -239,6 +247,7 @@ public class Game
                 false));
         garden.addCharacter(new Characters("a dog moving extremely silently"));
         garden.addCharacter(new Characters("a badly-wounded soldier, whose cries u can't hear"));
+        allGameCharactersInitializer(garden.getCharactersInRoom());
         itemsMapInitializer(garden);
 
         bathroom.setExit("north", bedRoom);
@@ -252,6 +261,7 @@ public class Game
                 true));
         bathroom.addCharacter(new Characters("a crazy scientist"));
         bathroom.addCharacter(new Characters("Elon Musk's moving statue"));
+        allGameCharactersInitializer(bathroom.getCharactersInRoom());
         itemsMapInitializer(bathroom);
 
         longPassage.setExit("upstairs", guardRoom);
@@ -266,6 +276,7 @@ public class Game
                 20,
                 true));
         longPassage.addCharacter(new Characters("a giant who can teleport anywhere"));
+        allGameCharactersInitializer(longPassage.getCharactersInRoom());
         itemsMapInitializer(longPassage);
 
         guardRoom.setExit("downstairs", longPassage);
@@ -284,10 +295,12 @@ public class Game
                 false));
         guardRoom.addCharacter(new Characters("The Ghost of Java"));
         guardRoom.addCharacter(new Characters("a small group of bats"));
+        allGameCharactersInitializer(guardRoom.getCharactersInRoom());
         itemsMapInitializer(guardRoom);
 
         currentRoom = courtyard;  // start game outside
         roomsStack.push(currentRoom);
+        moveCharacters();
     }
 
     /**
@@ -301,6 +314,15 @@ public class Game
         for (Item item : itemsInRoom) {
             itemsMap.put(item.getName(), item);
         }
+    }
+
+    /**
+     * Add Characters in room to allGameCharacters
+     * @param charactersInRoom HashSet containing characters in room
+     */
+    private void allGameCharactersInitializer(HashSet<Characters> charactersInRoom)
+    {
+        allGameCharacters.addAll(charactersInRoom);
     }
 
     /**
@@ -434,13 +456,13 @@ public class Game
                 "a magic transporter room, which will transport you to a random room in 3..2..1")) {
             // if the room is magic transporter room
             moveRandomRoom(nextRoom);
+            moveCharacters();
         }
         else {
             currentRoom = nextRoom;
             roomsStack.push(currentRoom);
-            System.out.println(currentRoom.getLongDescription() + "\n" + getInventory());
-            // randomly move characters:
             moveCharacters();
+            System.out.println(currentRoom.getLongDescription() + "\n" + getInventory());
         }
     }
 
@@ -470,6 +492,7 @@ public class Game
             currentRoom = roomsStack.peek();
             System.out.println(currentRoom.getLongDescription());
             System.out.println(getInventory());
+            moveCharacters();
         }
         else {
             System.out.println("No Room to go back to!!!!");
@@ -625,11 +648,9 @@ public class Game
      */
     private void moveCharacters()
     {
-        for (Characters character : currentRoom.getCharactersInRoom()) {
-            int randomIndex = random.nextInt(10);
-            // add the characters from current room to a random room to simulate their movement
+        for (Characters character : allGameCharacters) {
+            int randomIndex = random.nextInt(allGameRooms.size());
             allGameRooms.get(randomIndex).addCharacter(character);
-            //currentRoom.removeCharacter(character);
         }
     }
 
