@@ -113,7 +113,7 @@ public class Game
                 15,
                 true));
         greatHall.addCharacter(new Characters("The Ghost of King Edward"));
-        greatHall.addCharacter(new Characters("The demon of Caesar"));
+        greatHall.addCharacter(new Characters("The demon of Prince Caesar"));
         allGameCharactersInitializer(greatHall.getCharactersInRoom());
         itemsMapInitializer(greatHall);
 
@@ -135,8 +135,8 @@ public class Game
                 "a piece of broken arrow on the floor",
                 2,
                 true));
-        bedRoom.addCharacter(new Characters("A cat of impossibly-black color"));
-        bedRoom.addCharacter(new Characters("The Demon of Paul"));
+        bedRoom.addCharacter(new Characters("A cat of an impossibly-black color"));
+        bedRoom.addCharacter(new Characters("The Demon of King Paul"));
         allGameCharactersInitializer(bedRoom.getCharactersInRoom());
         itemsMapInitializer(bedRoom);
 
@@ -207,7 +207,7 @@ public class Game
                 5,
                 true));
         dungeon.addCharacter(new Characters("a moving doll"));
-        dungeon.addCharacter(new Characters("The Ghost of Leonard"));
+        dungeon.addCharacter(new Characters("The Ghost of Prince Leonard"));
         allGameCharactersInitializer(dungeon.getCharactersInRoom());
         itemsMapInitializer(dungeon);
 
@@ -229,7 +229,7 @@ public class Game
                 "a sharp piece of broken mirror placed on the chair",
                 6,
                 true));
-        solarRoom.addCharacter(new Characters("a strangely big dog"));
+        solarRoom.addCharacter(new Characters("a cat watching you endlessly"));
         solarRoom.addCharacter(new Characters("a hobbit"));
         allGameCharactersInitializer(solarRoom.getCharactersInRoom());
         itemsMapInitializer(solarRoom);
@@ -247,7 +247,7 @@ public class Game
                 "thousands of bats flying here everywhere",
                 25,
                 false));
-        garden.addCharacter(new Characters("a dog moving extremely silently"));
+        garden.addCharacter(new Characters("a dog staring at you"));
         garden.addCharacter(new Characters("a badly-wounded soldier, whose cries u can't hear"));
         allGameCharactersInitializer(garden.getCharactersInRoom());
         itemsMapInitializer(garden);
@@ -277,7 +277,7 @@ public class Game
                 "a portrait on the left with ancient scribblings",
                 20,
                 true));
-        longPassage.addCharacter(new Characters("a giant who can teleport anywhere"));
+        longPassage.addCharacter(new Characters("a giant which can teleport anywhere"));
         allGameCharactersInitializer(longPassage.getCharactersInRoom());
         itemsMapInitializer(longPassage);
 
@@ -300,14 +300,14 @@ public class Game
         allGameCharactersInitializer(guardRoom.getCharactersInRoom());
         itemsMapInitializer(guardRoom);
 
-        currentRoom = courtyard;  // start game outside
+        currentRoom = courtyard;  // start the game in courtyard
         roomsStack.push(currentRoom);
         moveCharacters();
     }
 
     /**
-     * Stores the items in HashMap and maps the names of the items to
-     * the items themselves
+     * Stores the items in a HashMap, mapping the names of the items to
+     * the corresponding Item objects.
      * @param room The room, items of which are to be added in the itemsMap
      */
     private void itemsMapInitializer(Room room)
@@ -319,8 +319,8 @@ public class Game
     }
 
     /**
-     * Add Characters in room to allGameCharacters
-     * @param charactersInRoom HashSet containing characters in room
+     * Add Characters in the room to allGameCharacters HashSet
+     * @param charactersInRoom The HashSet containing all characters in room
      */
     private void allGameCharactersInitializer(HashSet<Characters> charactersInRoom)
     {
@@ -342,7 +342,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("The game ends here. See you again!");
     }
 
     /**
@@ -351,9 +351,10 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
+        System.out.println("Welcome to Ghost-busters: Castle Edition!");
+        System.out.println("Ghost-busters: Castle Edition is a new and interesting" );
+        System.out.println("text-based adventure game! Let's dive in!");
+        System.out.println("Type 'help' if you need help and all the available commands.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription() + "\n" + getInventory());
     }
@@ -433,7 +434,7 @@ public class Game
         System.out.println();
         System.out.println("The \"exorcise\" command lets you perform exorcism in the ");
         System.out.println("current room. Be sure to use it wisely though - it is a matter of ");
-        System.out.println("life and death for you");
+        System.out.println("life and death for you!");
         System.out.println();
         System.out.println("The \"move random room\" command transports you to a random room.");
     }
@@ -495,6 +496,7 @@ public class Game
     private void goBack()
     {
         if (roomsStack.toArray().length > 1) {
+            // if we have visited at least two rooms
             roomsStack.pop();   // remove the top most Room from the stack, i.e., the one in which player is currently
             currentRoom = roomsStack.peek();
             System.out.println(currentRoom.getLongDescription());
@@ -523,7 +525,7 @@ public class Game
         }
         else if (player.getItemsPicked().contains(item)) {
             // if the player already has this item in inventory
-            System.out.println("You have already picked up this item");
+            System.out.println("You've picked this item up already!");
             return;
         }
         else {
@@ -584,16 +586,14 @@ public class Game
         if (!command.hasSecondWord()) {
             // if the player only enters "drop" as the command (i.e., without a second word)
             System.out.println("Drop what?");
-            return;
         }
         else if (!player.getItemsPicked().contains(item)) {
             // if no such item exists in the player's inventory
             System.out.println("There is no such item in the inventory, bro.");
-            return;
         }
         else {
             player.dropItem(item);
-            currentRoom.getItems().add(item);   // add the item in the current room (since we are dropping it)
+            currentRoom.addItems(item);   // add the item dropped in the current room
             System.out.println(getInventory());
             System.out.println(currentRoom.getLongDescription());
         }
@@ -610,6 +610,7 @@ public class Game
 
         // check if the user has picked up the required items to successfully
         // perform exorcism:
+
         boolean correctItemsPicked = player.getItemsPicked().contains(itemBook) &&
                 player.getItemsPicked().contains(itemStone) &&
                 player.getItemsPicked().contains(itemWand);
@@ -651,7 +652,8 @@ public class Game
 
     /**
      * Simulate the movement of the characters in rooms. Used as
-     * a supplement in other methods above.
+     * a supplement in other methods above. Called each time the player
+     * moves across rooms.
      */
     private void moveCharacters()
     {

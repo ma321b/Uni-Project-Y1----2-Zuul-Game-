@@ -50,10 +50,9 @@ public class Parser
             word1 = tokenizer.next();      // get first word
             if(tokenizer.hasNext()) {
                 word2 = tokenizer.next();      // get second word
-                // note: we just ignore the rest of the input line.
             }
             if (tokenizer.hasNext()) {
-                word3 = tokenizer.next();
+                word3 = tokenizer.next();     // get third word
             }
         }
 
