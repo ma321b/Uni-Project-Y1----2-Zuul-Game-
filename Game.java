@@ -20,7 +20,7 @@ import java.util.*;
  *             |                     |
  *          Bathroom             Guard Room
  *                                   \
- *                              Long Passage
+ *                              Long Passage  ------- Random Magic Room
  *                                   |
  *                                Dungeon
  *
@@ -63,7 +63,7 @@ public class Game
     private void createRooms()
     {
         Room greatHall, bedRoom, courtyard, kitchen, dungeon, solarRoom,
-                bathroom, garden, longPassage, guardRoom;
+                bathroom, garden, longPassage, guardRoom, magicRoom;
 
         // create the rooms
         greatHall = new Room("in the great hall, surrounded by weapons");
@@ -77,10 +77,11 @@ public class Game
         bathroom = new Room("a medieval style bathroom");
         longPassage = new Room("a seemingly never-ending passage");
         guardRoom = new Room("in a guardroom with armoured guard statues");
+        magicRoom = new Room("a magic transporter room, which will transport you to a random room in 3..2..1");
 
         // store all the rooms in the allGameRooms ArrayList
         Room[] roomsArray = new Room[] {
-                greatHall, bedRoom, courtyard, kitchen, dungeon,
+                greatHall, bedRoom, courtyard, kitchen, dungeon, magicRoom,
                 solarRoom, garden, bathroom, longPassage, guardRoom
         };
         allGameRooms.addAll(Arrays.asList(roomsArray));
@@ -255,6 +256,7 @@ public class Game
 
         longPassage.setExit("upstairs", guardRoom);
         longPassage.setExit("south", dungeon);
+        longPassage.setExit("east", magicRoom);
         longPassage.addItems(new Item("medieval-lamp",
                 "a medieval era lamp",
                 2,
@@ -413,6 +415,7 @@ public class Game
      */
     private void goRoom(Command command) 
     {
+        //int randomIndex = random.nextInt(allGameRooms.size());
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
@@ -426,6 +429,11 @@ public class Game
 
         if (nextRoom == null) {
             System.out.println("Can't go that way, human!");
+        }
+        else if (nextRoom.getShortDescription().equals(
+                "a magic transporter room, which will transport you to a random room in 3..2..1")) {
+            // if the room is magic transporter room
+            moveRandomRoom(nextRoom);
         }
         else {
             currentRoom = nextRoom;
@@ -457,12 +465,15 @@ public class Game
      */
     private void goBack()
     {
-        roomsStack.pop();   // remove the top most Room from the stack, i.e., the one in which player is currently
-        currentRoom = roomsStack.peek();
-        System.out.println(currentRoom.getLongDescription());
-        System.out.println(getInventory());
-        // randomly move characters:
-        moveCharacters();
+        if (roomsStack.toArray().length > 1) {
+            roomsStack.pop();   // remove the top most Room from the stack, i.e., the one in which player is currently
+            currentRoom = roomsStack.peek();
+            System.out.println(currentRoom.getLongDescription());
+            System.out.println(getInventory());
+        }
+        else {
+            System.out.println("No Room to go back to!!!!");
+        }
     }
 
     /**
@@ -620,5 +631,18 @@ public class Game
             allGameRooms.get(randomIndex).addCharacter(character);
             //currentRoom.removeCharacter(character);
         }
+    }
+
+    /**
+     * Implements the magic transporter room
+     * @param magicRoom The transporter room
+     */
+    private void moveRandomRoom(Room magicRoom)
+    {
+        int randomIndex = random.nextInt(allGameRooms.size());
+        System.out.println("You are in " + magicRoom.getShortDescription());
+        currentRoom = allGameRooms.get(randomIndex);
+        System.out.println(currentRoom.getLongDescription());
+        System.out.println(getInventory());
     }
 }
