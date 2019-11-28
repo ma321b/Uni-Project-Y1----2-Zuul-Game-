@@ -35,8 +35,9 @@ public class Game
         g.play();
     }
 
+    private Random random;
     private Parser parser;
-    private ArrayList<Room> allGameRooms;
+    private ArrayList<Room> allGameRooms;     // stores all the Rooms in the game
     private Room currentRoom;
     private Stack<Room> roomsStack;
     private Player player;
@@ -47,6 +48,7 @@ public class Game
      */
     public Game() 
     {
+        random = new Random();
         allGameRooms = new ArrayList<>();
         itemsMap = new HashMap<>();
         player = new Player();
@@ -63,7 +65,7 @@ public class Game
         Room greatHall, bedRoom, courtyard, kitchen, dungeon, solarRoom,
                 bathroom, garden, longPassage, guardRoom;
 
-        // create the rooms and store them in the allGameRooms ArrayList
+        // create the rooms
         greatHall = new Room("in the great hall, surrounded by weapons");
         bedRoom = new Room("in a strange bedroom, having no bed");
         courtyard = new Room("in a spooky-looking courtyard");
@@ -76,13 +78,14 @@ public class Game
         longPassage = new Room("a seemingly never-ending passage");
         guardRoom = new Room("in a guardroom with armoured guard statues");
 
+        // store all the rooms in the allGameRooms ArrayList
         Room[] roomsArray = new Room[] {
                 greatHall, bedRoom, courtyard, kitchen, dungeon,
                 solarRoom, garden, bathroom, longPassage, guardRoom
         };
         allGameRooms.addAll(Arrays.asList(roomsArray));
 
-        // initialise room exits and items in the rooms
+        // initialise room exits and items and characters in the rooms
         greatHall.setExit("south", courtyard);
         greatHall.addItems(new Item("spear",
                 "a bloody spear",
@@ -104,6 +107,8 @@ public class Game
                 "a sharp-edged sword",
                 15,
                 true));
+        greatHall.addCharacter(new Characters("The Ghost of King Edward"));
+        greatHall.addCharacter(new Characters("The demon of Caesar"));
         itemsMapInitializer(greatHall);
 
         bedRoom.setExit("east", courtyard);
@@ -124,6 +129,8 @@ public class Game
                 "a piece of broken arrow on the floor",
                 2,
                 true));
+        bedRoom.addCharacter(new Characters("A cat of impossibly-black color"));
+        bedRoom.addCharacter(new Characters("The Demon of Paul"));
         itemsMapInitializer(bedRoom);
 
         courtyard.setExit("north", greatHall);
@@ -146,6 +153,8 @@ public class Game
                 "a small wand-like object",
                 1,
                 true));
+        courtyard.addCharacter(new Characters("a scary witch"));
+        courtyard.addCharacter(new Characters("a levitating old woman"));
         itemsMapInitializer(courtyard);
 
         kitchen.setExit("east", solarRoom);
@@ -167,6 +176,8 @@ public class Game
                 "noises can be heard",
                 20,
                 true));
+        kitchen.addCharacter(new Characters("a moving statue"));
+        kitchen.addCharacter(new Characters("a moving skeleton"));
         itemsMapInitializer(kitchen);
 
         dungeon.setExit("north", longPassage);
@@ -186,6 +197,8 @@ public class Game
                 "a rather big book with light-rays coming out of it",
                 5,
                 true));
+        dungeon.addCharacter(new Characters("a moving doll"));
+        dungeon.addCharacter(new Characters("The Ghost of Leonard"));
         itemsMapInitializer(dungeon);
 
         solarRoom.setExit("east", garden);
@@ -206,6 +219,8 @@ public class Game
                 "a sharp piece of broken mirror placed on the chair",
                 6,
                 true));
+        solarRoom.addCharacter(new Characters("a strangely big dog"));
+        solarRoom.addCharacter(new Characters("a hobbit"));
         itemsMapInitializer(solarRoom);
 
         garden.setExit("west", solarRoom);
@@ -221,6 +236,8 @@ public class Game
                 "thousands of bats flying here everywhere",
                 25,
                 false));
+        garden.addCharacter(new Characters("a dog moving extremely silently"));
+        garden.addCharacter(new Characters("a badly-wounded soldier, whose cries u can't hear"));
         itemsMapInitializer(garden);
 
         bathroom.setExit("north", bedRoom);
@@ -232,6 +249,8 @@ public class Game
                 "a glowing piece of wood",
                 2,
                 true));
+        bathroom.addCharacter(new Characters("a crazy scientist"));
+        bathroom.addCharacter(new Characters("Elon Musk's moving statue"));
         itemsMapInitializer(bathroom);
 
         longPassage.setExit("upstairs", guardRoom);
@@ -244,6 +263,7 @@ public class Game
                 "a portrait on the left with ancient scribblings",
                 20,
                 true));
+        longPassage.addCharacter(new Characters("a giant who can teleport anywhere"));
         itemsMapInitializer(longPassage);
 
         guardRoom.setExit("downstairs", longPassage);
@@ -260,6 +280,8 @@ public class Game
                 "a statue of a knight",
                 300,
                 false));
+        guardRoom.addCharacter(new Characters("The Ghost of Java"));
+        guardRoom.addCharacter(new Characters("a small group of bats"));
         itemsMapInitializer(guardRoom);
 
         currentRoom = courtyard;  // start game outside
@@ -386,7 +408,7 @@ public class Game
     }
 
     /** 
-     * Try to in to one direction. If there is an exit, enter the new
+     * Try to move in to one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
      */
     private void goRoom(Command command) 
@@ -403,12 +425,14 @@ public class Game
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("Can't go that way, human!");
         }
         else {
             currentRoom = nextRoom;
             roomsStack.push(currentRoom);
             System.out.println(currentRoom.getLongDescription() + "\n" + getInventory());
+            // randomly move characters:
+            moveCharacters();
         }
     }
 
@@ -437,6 +461,8 @@ public class Game
         currentRoom = roomsStack.peek();
         System.out.println(currentRoom.getLongDescription());
         System.out.println(getInventory());
+        // randomly move characters:
+        moveCharacters();
     }
 
     /**
@@ -506,7 +532,8 @@ public class Game
 
     /**
      * Drop an item from the player's inventory
-     * @param command
+     * @param command The command, specifying the object
+     *                to drop
      */
     private void dropItem(Command command)
     {
@@ -531,6 +558,9 @@ public class Game
         }
     }
 
+    /**
+     * Perform exorcism in the current room the player is in
+     */
     private void exorcise()
     {
         Item itemWand = itemsMap.get("wand");
@@ -575,6 +605,20 @@ public class Game
             System.out.println();
             System.out.println("You have been toasted by the demons here. You ");
             System.out.println("shouldn't have attempted exorcism in the wrong room.");
+        }
+    }
+
+    /**
+     * Simulate the movement of the characters in rooms. Used as
+     * a supplement in other methods above.
+     */
+    private void moveCharacters()
+    {
+        for (Characters character : currentRoom.getCharactersInRoom()) {
+            int randomIndex = random.nextInt(10);
+            // add the characters from current room to a random room to simulate their movement
+            allGameRooms.get(randomIndex).addCharacter(character);
+            //currentRoom.removeCharacter(character);
         }
     }
 }

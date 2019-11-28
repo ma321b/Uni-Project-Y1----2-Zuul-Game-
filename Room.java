@@ -66,7 +66,7 @@ public class Room
     public String getLongDescription()
     {
         return "You are " + description + ".\n" + getExitString()
-                + "\n" + getItemsString() + getCharactersInRoomString();
+                + "\n" + getItemsString() + "\n" + getCharactersInRoomString();
     }
 
     /**
@@ -147,9 +147,9 @@ public class Room
      */
     private String getCharactersInRoomString()
     {
-        String charactersString = "Characters:";
+        String charactersString = "Character(s):";
         for (Characters character : charactersInRoom) {
-            charactersString += " " + character.getName();
+            charactersString += "\n" + character.getName();
         }
         return charactersString;
     }
@@ -160,6 +160,25 @@ public class Room
     public HashSet<Characters> getCharactersInRoom()
     {
         return charactersInRoom;
+    }
+
+    /**
+     * Add a character to the Set containing
+     * the characters in the room.
+     * @param character The character to be added.
+     */
+    public void addCharacter(Characters character)
+    {
+        charactersInRoom.add(character);
+    }
+
+    /**
+     * Remove the character from the set containing characters in the room
+     * @param character The character to remove
+     */
+    public void removeCharacter(Characters character)
+    {
+        charactersInRoom.remove(character);
     }
 }
 
