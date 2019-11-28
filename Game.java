@@ -13,7 +13,9 @@ import java.util.*;
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  *
- *  MAP:
+ *                                          MAP:
+ *
+ *
  *                              Great Hall
  *                                   |
  *          Bed Room  --------- Courtyard ----------- Kitchen ------ Solar Room  ----- Garden
@@ -393,6 +395,9 @@ public class Game
             exorcise();
             wantToQuit = true;
         }
+        else if (commandWord.equals("move")) {
+            threeWordParser(command);
+        }
         // else command not recognised.
         return wantToQuit;
     }
@@ -429,6 +434,8 @@ public class Game
         System.out.println("The \"exorcise\" command lets you perform exorcism in the ");
         System.out.println("current room. Be sure to use it wisely though - it is a matter of ");
         System.out.println("life and death for you");
+        System.out.println();
+        System.out.println("The \"move random room\" command transports you to a random room.");
     }
 
     /** 
@@ -665,5 +672,26 @@ public class Game
         currentRoom = allGameRooms.get(randomIndex);
         System.out.println(currentRoom.getLongDescription());
         System.out.println(getInventory());
+    }
+
+    /**
+     * Moves the player to a random room in the game when a three-word command
+     * "move random room" is entered by the user
+     * @param command The command provided by the user
+     */
+    private void threeWordParser(Command command)
+    {
+        int randomIndex = random.nextInt(allGameRooms.size());
+        if (!(command.hasSecondWord() || command.hasThirdWord())) {
+            System.out.println("No such three-word command");
+        }
+        else if (command.getSecondWord().equals("random") &&
+                command.getThirdWord().equals("room")) {
+            System.out.println("Transporting you to a random room in 3...2...1...");
+            currentRoom = allGameRooms.get(randomIndex);
+            System.out.println(currentRoom.getLongDescription());
+            System.out.println(getInventory());
+            moveCharacters();
+        }
     }
 }
