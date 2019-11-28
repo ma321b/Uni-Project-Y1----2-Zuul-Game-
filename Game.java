@@ -32,11 +32,6 @@ import java.util.*;
 
 public class Game 
 {
-    public static void main(String[] args) {
-        Game g = new Game();
-        g.play();
-    }
-
     private Random random;
     private Parser parser;
     private ArrayList<Room> allGameRooms;     // stores all the Rooms in the game
