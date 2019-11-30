@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Characters
+comment0.text=\r\n\ This\ class\ stores\ information\ about\ all\ the\ characters\ in\ the\ game,\ excluding\ the\ player\r\n
+comment1.params=name
+comment1.target=Characters(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ @return\ The\ short\ name\ of\ the\ character\r\n
+numComments=3

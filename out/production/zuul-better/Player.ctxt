@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Player
+comment0.text=\r\n\ A\ class\ for\ the\ player.\ Used\ for\ storing\ basic\ information\ about\ the\ player\r\n\ himself\ and\ his\ inventory\r\n
+comment1.params=
+comment1.target=Player()
+comment2.params=item
+comment2.target=void\ pickUpItem(Item)
+comment2.text=\r\n\ Pick\ up\ an\ item\ from\ inside\ the\ room\r\n\ @param\ item\ The\ item\ to\ pick\r\n
+comment3.params=
+comment3.target=int\ getTotalWeight()
+comment3.text=\r\n\ Gets\ the\ total\ weight\ of\ the\ items\ the\ player\ is\ carrying\r\n\ @return\ Total\ weight\ of\ the\ objects\r\n
+comment4.params=weight
+comment4.target=int\ getTotalWeight(int)
+comment4.text=\r\n\ OVERLOADED\ METHOD\:\r\n\ Gets\ the\ total\ weight\ of\ the\ items\ the\ player\ is\ carrying\r\n\ plus\ the\ weight\ of\ the\ item\ for\ which\ an\ attempt\ to\ pick\r\n\ up\ is\ made\r\n\ @param\ weight\ Weight\ of\ the\ object\ which\ is\ to\ be\ picked\ up\r\n\ @return\ The\ total\ weight\ of\ carried\ objects\ +\ weight\ of\ object\r\n\ attempted\ to\ pick\ up\r\n
+comment5.params=item
+comment5.target=void\ dropItem(Item)
+comment5.text=\r\n\ Drop\ an\ item\ currently\ in\ the\ player's\ inventory\r\n\ @param\ item\ The\ item\ to\ remove\ from\ the\ inventory\r\n
+comment6.params=
+comment6.target=java.util.HashSet\ getItemsPicked()
+comment6.text=\r\n\ Retrieve\ the\ HashSet\ containing\ the\ items\ picked\r\n\ up\ by\ the\ player\r\n\ @return\ The\ HashSet\ containing\ items\r\n
+numComments=7

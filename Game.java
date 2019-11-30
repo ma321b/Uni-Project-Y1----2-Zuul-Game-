@@ -32,6 +32,10 @@ import java.util.*;
 
 public class Game 
 {
+    public static void main(String[] args) {
+        Game g = new Game();
+        g.play();
+    }
     private Random random;
     private Parser parser;
     private ArrayList<Room> allGameRooms;     // stores all the Rooms in the game
@@ -39,7 +43,7 @@ public class Game
     private Room currentRoom;
     private Stack<Room> roomsStack;
     private Player player;
-    private HashMap<String, Item> itemsMap;
+    private HashMap<String, Item> itemsMap;      // map each item's name to it's object
         
     /**
      * Create the game and initialise its internal map.
@@ -392,7 +396,13 @@ public class Game
             wantToQuit = true;
         }
         else if (commandWord.equals("move")) {
-            threeWordParser(command);
+            commandMoveRandom(command);
+        }
+        else if (commandWord.equals("provide")) {
+            roomHint(command);
+        }
+        else if (commandWord.equals("i")) {
+            iAmAfraid(command);
         }
         // else command not recognised.
         return wantToQuit;
@@ -659,14 +669,16 @@ public class Game
     }
 
     /**
-     * Implements the magic transporter room
-     * @param magicRoom The transporter room
+     * Implements the magic transporter room - moves the player to a random
+     * room when the user enters this room.
+     * @param room The transporter room
      */
-    private void moveRandomRoom(Room magicRoom)
+    private void moveRandomRoom(Room room)
     {
         int randomIndex = random.nextInt(allGameRooms.size());
-        System.out.println("You are in " + magicRoom.getShortDescription());
+        System.out.println("You are in " + room.getShortDescription());
         currentRoom = allGameRooms.get(randomIndex);
+        moveCharacters();
         System.out.println(currentRoom.getLongDescription());
         System.out.println(getInventory());
     }
@@ -676,7 +688,7 @@ public class Game
      * "move random room" is entered by the user
      * @param command The command provided by the user
      */
-    private void threeWordParser(Command command)
+    private void commandMoveRandom(Command command)
     {
         int randomIndex = random.nextInt(allGameRooms.size());
         if (!(command.hasSecondWord() || command.hasThirdWord())) {
@@ -689,6 +701,65 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
             System.out.println(getInventory());
             moveCharacters();
+        }
+        else {
+            System.out.println("Didn't quite get that, m8!");
+        }
+    }
+
+    /**
+     * A secret code to teleport the user to a room containing one of the items
+     * required for successful exorcism
+     * @param command The command itself
+     */
+    private void roomHint(Command command)
+    {
+        boolean correctCommand = command.getSecondWord().equals("room") &&
+                command.getThirdWord().equals("hint");
+        if (correctCommand) {
+            ArrayList<Room> winningRooms = new ArrayList<>();
+            for (Room room : allGameRooms) {
+                if (room.getShortDescription().equals("in a spooky-looking courtyard") ||
+                        room.getShortDescription().equals("in a kitchen having an odd smell") ||
+                        room.getShortDescription().equals("in a dark, scary dungeon")) {
+                    // if the room is either courtyard or dungeon or kitchen
+                    winningRooms.add(room);
+                }
+            }
+            int randomIndex = random.nextInt(winningRooms.size());
+            System.out.println("You have used a hint!");
+            moveCharacters();
+            currentRoom = winningRooms.get(randomIndex);
+            System.out.println(currentRoom.getLongDescription());
+            System.out.println(getInventory());
+        }
+        else {
+            System.out.println("Whoops! What did you mean?");
+        }
+    }
+
+    /**
+     * Teleport the user straight to the dungeon when the user
+     * types "i am afraid" as the command.
+     * @param command The command entered by the user
+     */
+    private void iAmAfraid(Command command)
+    {
+        boolean isAfraid = command.getSecondWord().equals("am") &&
+                command.getThirdWord().equals("afraid");
+        if (isAfraid) {
+            for (Room room : allGameRooms) {
+                if (room.getShortDescription().equals("in a dark, scary dungeon")) {
+                    System.out.println("Don't be afraid next time, hero!");
+                    currentRoom = room;
+                    System.out.println(currentRoom.getLongDescription());
+                    System.out.println(getInventory());
+                    return;
+                }
+            }
+        }
+        else {
+            System.out.println("Not sure what u mean :/");
         }
     }
 }

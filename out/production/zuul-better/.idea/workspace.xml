@@ -4,7 +4,17 @@
     <list default="true" id="7c507ae2-f089-4803-a23c-2689e0fb7d33" name="Default Changelist" comment="Implemented the &quot;back&quot; command to go to the previous room">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Command.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Command.ctxt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Game.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Game.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Item.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Item.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Parser.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Parser.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/Room.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/Room.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zuul-better/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zuul-better/package.bluej" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/package.bluej" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +46,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -84,7 +94,11 @@
       <workItem from="1574879886801" duration="3953000" />
       <workItem from="1574887417549" duration="7343000" />
       <workItem from="1574946486576" duration="212000" />
-      <workItem from="1574952385281" duration="1993000" />
+      <workItem from="1574952385281" duration="8601000" />
+      <workItem from="1574978429169" duration="5170000" />
+      <workItem from="1575019618224" duration="9285000" />
+      <workItem from="1575042623282" duration="253000" />
+      <workItem from="1575049477506" duration="1795000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented the &quot;back&quot; command to go to the previous room">
       <created>1574716569733</created>
